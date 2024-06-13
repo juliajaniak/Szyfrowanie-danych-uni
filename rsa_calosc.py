@@ -4,14 +4,14 @@ from egcd_2 import egcd
 from egcd_2 import odwrot 
 from szybkie_potegowanie import szybkie_pot 
 
-def NWD(a,b):
+def nwd(a,b):
     if b>0:
-        return NWD(b,a%b)
+        return nwd(b,a%b)
     return a
     
 def pub_wykl(p,q):
     b = 3
-    while ((NWD(b,(p-1)*(q-1))!=1) or (b>=p*q)):
+    while ((nwd(b,(p-1)*(q-1))!=1) or (b>=p*q)):
         b += 2
     return b
     #q(n)=q(p*q)=q(p)*q(q)=(p-1)(q-1)
