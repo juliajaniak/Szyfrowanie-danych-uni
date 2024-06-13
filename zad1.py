@@ -1,7 +1,7 @@
 def NWD(a,b):
-    if b>0:
-        return NWD(b,a%b)
-    return a
+    if b == 0:
+        return a
+    return NWD(b,a%b)
     
 def pub_wykl(p,q):
     b = 3
