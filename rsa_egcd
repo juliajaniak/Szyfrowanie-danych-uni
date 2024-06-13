@@ -1,0 +1,36 @@
+def nwd(a,b):
+    if b>0:
+        return nwd(b, a%b)
+    return a
+def egcd(a,b):
+    if a==0:
+        return(b,0,1)
+    else:
+        g,y,x=egcd(b%a,a)
+        return (g,x-(b//a)*y,y)
+def odwrot(a, m):
+    g,x,y=egcd(a, m)
+    if g!= 1:
+        print("Błąd.")
+    else: 
+        return x%m
+def pryw_wykl(b,p,q):
+    return odwrot(b, (p-1)*(q-1))
+def pub_wykl(p,q):
+    e=3
+    while((nwd(e,(p-1)*(q-1))!=1) or (e>=p*q)):
+        e+=2
+    return e
+
+ 
+p=int(input('Podaj p: '))
+q=int(input('Podaj q: '))
+n=p*q
+print('Moduł klucza n:',n)
+x=int(input('Podaj tekst: (0<x<%d): ' %(n+1)))
+b=pub_wykl(p,q)
+print('Wykładnik klucza publicznego b:',b)
+y=pow(x,b,n)
+print('Szyfrogram:',y)
+a=pryw_wykl(b,p,q)
+print('a: ',a)
